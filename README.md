@@ -41,16 +41,16 @@
   - Handle duplicate email errors
   - Database connection failures
 
-#### Subtask 1.1.3: JWT Authentication
-- **User Story**: As a registered user, I want my session to be managed securely with JWT tokens so that I can maintain a persistent and secure connection to the platform
+#### Subtask 1.1.3: NextAuth Integration
+- **User Story**: As a registered user, I want my session to be managed securely with NextAuth so that I can maintain a persistent and secure connection to the platform
 - **Constraints**:
-  - Store tokens in HTTP-only cookies
-  - Secure token handling
+  - NextAuth.js v4+
+  - HTTP-only cookies for sessions
 - **Needs**:
-  - JWT expiration and refresh tokens
-  - Session management
+  - Credentials provider setup
+  - Session callback configuration
 - **Error Boundaries**:
-  - Handle invalid/expired tokens
+  - Handle OAuth provider errors
   - Session creation failures
 
 ---
@@ -70,29 +70,17 @@
   - "Invalid credentials" message
   - Account lockout notifications
 
-#### Subtask 1.2.2: MongoDB Verification
-- **User Story**: As a registered user, I want the system to verify my credentials against the database so that only I can access my account
+#### Subtask 1.2.2: NextAuth Session
+- **User Story**: As a registered user, I want NextAuth to manage my persistent session so that I can stay logged in securely
 - **Constraints**:
-  - Use bcrypt for password comparison
-  - Secure verification process
+  - JWT encryption for sessions
+  - Secure cookie settings
 - **Needs**:
-  - Check if account is active
-  - Efficient credential verification
+  - Role-based session claims
+  - Session refresh mechanism
 - **Error Boundaries**:
-  - Handle "user not found" errors
-  - Database connection issues
-
-#### Subtask 1.2.3: JWT Session
-- **User Story**: As a logged-in user, I want to receive a JWT token upon successful login so that I can maintain my session securely across the platform
-- **Constraints**:
-  - Set token expiration (e.g., 1 hour)
-  - Secure token generation
-- **Needs**:
-  - Refresh token mechanism
-  - Session management
-- **Error Boundaries**:
-  - Handle token signing errors
-  - Session validation failures
+  - Handle expired sessions
+  - Authorization middleware failures
 
 ---
 
@@ -113,17 +101,17 @@
   - Invalid role assignments
   - Database update failures
 
-#### Subtask 2.1.2: Role-Based Routing
+#### Subtask 2.1.2: Role-Based Access
 - **User Story**: As a platform administrator, I want to restrict access to admin routes based on user roles so that only authorized personnel can access sensitive features
 - **Constraints**:
-  - Middleware for role checks
-  - Secure route protection
+  - NextAuth middleware protection
+  - getServerSession() checks
 - **Needs**:
-  - Redirect unauthorized users
-  - Clear access control
+  - Dynamic navigation rendering
+  - Admin dashboard isolation
 - **Error Boundaries**:
-  - Handle undefined roles
-  - Authorization failures
+  - Unauthorized access alerts
+  - Missing role errors
 
 ---
 
@@ -311,17 +299,17 @@
 ### Task 5.1: Admin Access ✅
 **User Story**: As an administrator, I want secure access to administrative features so that I can manage the platform effectively
 
-#### Subtask 5.1.1: Role Check on Login
-- **User Story**: As an administrator, I want the system to verify my admin role at login so that I can access administrative features securely
+#### Subtask 5.1.1: NextAuth Role Checks
+- **User Story**: As an administrator, I want NextAuth to verify my admin role so that I can access administrative features securely
 - **Constraints**:
-  - Secure middleware check
-  - Role validation
+  - Server-side props verification
+  - Middleware validation
 - **Needs**:
-  - Redirect non-admins to user dashboard
-  - Secure access control
+  - Action audit logging
+  - 2FA enforcement
 - **Error Boundaries**:
-  - Handle undefined roles
-  - Authorization failures
+  - Privilege escalation attempts
+  - Feature load failures
 
 #### Subtask 5.1.2: Admin UI Features
 - **User Story**: As an administrator, I want a distinct UI with admin tools so that I can easily identify and use administrative functions
