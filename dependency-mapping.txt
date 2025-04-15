@@ -1,0 +1,68 @@
+# Dependency Mapping for Crime Report Application
+
+## File Structure to README.md Mapping
+
+The file-structure.txt maps to the README.md as follows:
+
+1. **Authentication (EPIC 1)**
+   - Maps to: src/models/User.ts
+   - Maps to: src/app/api/users/route.ts
+
+2. **User Roles & Access Control (EPIC 2)**
+   - Maps to: src/models/User.ts (role property)
+
+3. **Report Filing Module (EPIC 3)**
+   - Crime Reports:
+     - Maps to: src/app/api/crime-reports/route.ts
+     - Maps to: src/models/CrimeReport.ts
+
+4. **Reports Viewer (EPIC 4)**
+   - Maps to: src/app/page.tsx (for viewing reports)
+
+5. **Admin Module (EPIC 5)**
+   - To be implemented
+
+6. **UI/UX & Responsiveness (EPIC 6)**
+   - Maps to: src/app/globals.css
+   - Maps to: src/app/layout.tsx
+
+7. **Data Structure (EPIC 7)**
+   - Maps to: src/models/
+   - Maps to: src/lib/mongodb.ts (database connection)
+
+8. **Quality & Testing (EPIC 8)**
+   - To be implemented
+
+## Task Dependencies
+
+1. **Authentication Dependencies**:
+   - Task 1.1 (User Registration) must be completed before Task 1.2 (User Login)
+   - Task 1.1 must be completed before EPIC 3 (Report Filing Module)
+   - Task 1.2 must be completed before EPIC 5 (Admin Module)
+
+2. **User Roles Dependencies**:
+   - Task 2.1 (Role Differentiation) depends on EPIC 1 (Authentication)
+   - Task 2.1 must be completed before EPIC 5 (Admin Module)
+
+3. **Report Filing Dependencies**:
+   - Task 3.1 (File Crime Report) depends on EPIC 1 (Authentication)
+   - Task 3.1 depends on MongoDB connection being properly set up
+
+4. **Reports Viewer Dependencies**:
+   - Task 4.1 (View Reports) depends on EPIC 3 (Report Filing Module)
+   - Task 4.1 depends on MongoDB collections being properly set up
+
+5. **Admin Module Dependencies**:
+   - Task 5.1 (Admin Access) depends on EPIC 2 (User Roles & Access Control)
+   - Task 5.2 (Status Update) depends on EPIC 3 (Report Filing Module)
+
+6. **UI/UX Dependencies**:
+   - Task 6.1 (Mobile-First Design) should be implemented alongside all UI components
+   - Task 6.2 (Navigation & Routing) depends on the overall application structure
+
+7. **Data Structure Dependencies**:
+   - Task 7.1 (MongoDB Collections) should be implemented before EPIC 3 (Report Filing Module)
+   - Task 7.1 is implemented in src/models/ and src/lib/mongodb.ts
+
+8. **Testing Dependencies**:
+   - Testing depends on all other EPICs being implemented

@@ -1,0 +1,33 @@
+├── .gitignore
+├── README.md
+├── components.json
+├── eslint.config.mjs
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+    ├── file.svg
+    ├── globe.svg
+    ├── next.svg
+    ├── vercel.svg
+    └── window.svg
+├── src
+    ├── app
+    │   ├── api
+    │   │   ├── crime-reports
+    │   │   │   └── route.ts
+    │   │   └── users
+    │   │       └── route.ts
+    │   ├── favicon.ico
+    │   ├── globals.css
+    │   ├── layout.tsx
+    │   └── page.tsx
+    ├── lib
+    │   ├── mongodb.ts
+    │   └── utils.ts
+    └── models
+        ├── CrimeReport.ts
+        └── User.ts
+├── tsconfig.json
+└── user-stories.md
