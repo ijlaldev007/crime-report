@@ -73,7 +73,7 @@
 #### Subtask 1.2.2: NextAuth Session
 - **User Story**: As a registered user, I want NextAuth to manage my persistent session so that I can stay logged in securely
 - **Constraints**:
-  - JWT encryption for sessions
+  - NextAuth session management
   - Secure cookie settings
 - **Needs**:
   - Role-based session claims

@@ -11,8 +11,8 @@
 #### Subtask 1.1.2: MongoDB Storage
 **User Story**: As a new user, I want my account information to be stored securely in the database so that my personal data remains protected and can be retrieved for future logins.
 
-#### Subtask 1.1.3: JWT Authentication
-**User Story**: As a registered user, I want my session to be managed securely with JWT tokens so that I can maintain a persistent and secure connection to the platform.
+#### Subtask 1.1.3: NextAuth Integration
+**User Story**: As a registered user, I want my session to be managed securely with NextAuth so that I can maintain a persistent and secure connection to the platform.
 
 ### Task 1.2: User Login
 **User Story**: As a registered user, I want to log in with my email and password so that I can access my account and use the platform's features.
@@ -20,11 +20,8 @@
 #### Subtask 1.2.1: Login Form
 **User Story**: As a registered user, I want a simple login form with email and password fields so that I can easily access my account.
 
-#### Subtask 1.2.2: MongoDB Verification
-**User Story**: As a registered user, I want the system to verify my credentials against the database so that only I can access my account.
-
-#### Subtask 1.2.3: JWT Session
-**User Story**: As a logged-in user, I want to receive a JWT token upon successful login so that I can maintain my session securely across the platform.
+#### Subtask 1.2.2: NextAuth Session
+**User Story**: As a registered user, I want NextAuth to manage my persistent session so that I can stay logged in securely.
 
 ## EPIC 2: User Roles & Access Control
 
@@ -34,7 +31,7 @@
 #### Subtask 2.1.1: MongoDB Role Property
 **User Story**: As a platform administrator, I want user roles to be stored in the database so that I can assign and manage different permission levels.
 
-#### Subtask 2.1.2: Role-Based Routing
+#### Subtask 2.1.2: Role-Based Access
 **User Story**: As a platform administrator, I want to restrict access to admin routes based on user roles so that only authorized personnel can access sensitive features.
 
 ### Task 2.2: Anonymous Access
@@ -109,8 +106,8 @@
 ### Task 5.1: Admin Access
 **User Story**: As an administrator, I want secure access to administrative features so that I can manage the platform effectively.
 
-#### Subtask 5.1.1: Role Check on Login
-**User Story**: As an administrator, I want the system to verify my admin role at login so that I can access administrative features securely.
+#### Subtask 5.1.1: NextAuth Role Checks
+**User Story**: As an administrator, I want NextAuth to verify my admin role so that I can access administrative features securely.
 
 #### Subtask 5.1.2: Admin UI Features
 **User Story**: As an administrator, I want a distinct UI with admin tools so that I can easily identify and use administrative functions.
