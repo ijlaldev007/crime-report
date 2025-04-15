@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; // Import mongoose
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Please add your MONGODB_URI to .env');
@@ -6,10 +6,24 @@ if (!process.env.MONGODB_URI) {
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-let cached = (global as any).mongoose;
+// Define a type for our mongoose cache
+type MongooseCache = {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+};
 
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+// Define a type for the global object with our mongoose property
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: MongooseCache | undefined;
+}
+
+// Initialize the cached connection
+const cached: MongooseCache = global.mongoose || { conn: null, promise: null };
+
+// Store in global to prevent reconnection on hot reload
+if (!global.mongoose) {
+  global.mongoose = cached;
 }
 
 export async function connectToDatabase() {
