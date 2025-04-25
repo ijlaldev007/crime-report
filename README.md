@@ -85,12 +85,12 @@
 
 ---
 
-## EPIC 2: User Roles & Access Control 
+## EPIC 2: User Roles & Access Control ✅
 
-### Task 2.1: Role Differentiation 
+### Task 2.1: Role Differentiation ✅
 **User Story**: As a platform administrator, I want to differentiate between regular users and admins so that I can control access to administrative features
 
-#### Subtask 2.1.1: Role Property
+#### Subtask 2.1.1: Role Property ✅
 - **User Story**: As a platform administrator, I want user roles to be stored in the database so that I can assign and manage different permission levels
 - **Constraints**:
   - Enum: ['user', 'admin']
@@ -102,7 +102,7 @@
   - Invalid role assignments
   - Database update failures
 
-#### Subtask 2.1.2: Role-Based Access
+#### Subtask 2.1.2: Role-Based Access 
 - **User Story**: As a platform administrator, I want to restrict access to admin routes based on user roles so that only authorized personnel can access sensitive features
 - **Constraints**:
   - NextAuth middleware protection

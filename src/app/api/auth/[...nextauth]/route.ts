@@ -37,13 +37,13 @@ const handler = NextAuth({
                 token.id = user.id;
                 token.email_verified = user.isEmailVerified;
             }
-            
+
             // Enhanced security with additional claims
             token.iat = Math.floor(Date.now() / 1000);
             token.exp = Math.floor(Date.now() / 1000) + (24 * 60 * 60); // 24 hours
             token.jti = crypto.randomUUID();
             token.nonce = crypto.randomBytes(16).toString('hex'); // Add nonce for extra security
-            
+
             return token;
         },
         async session({ session, token }) {
