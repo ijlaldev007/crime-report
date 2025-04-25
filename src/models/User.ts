@@ -9,13 +9,46 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, 'Please provide an email'],
-    unique: true
+    unique: true,
+    lowercase: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: [true, 'Please provide a password'],
+    minlength: [8, 'Password must be at least 8 characters']
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
+  isEmailVerified: {
+    type: Boolean,
+    default: false
+  },
+  verificationToken: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+  verificationTokenExpiry: {
+    type: Date
   },
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  loginAttempts: {
+    type: Number,
+    default: 0
+  },
+  lockUntil: {
+    type: Date
   }
 });
 
-// Prevent mongoose from creating the model multiple times
 export const User = mongoose.models.User || mongoose.model('User', UserSchema);
+
+
+

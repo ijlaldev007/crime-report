@@ -7,18 +7,26 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-
-import { AlertCircle, Bell, Shield, Mail } from "lucide-react";
+import { cn, getPasswordStrength } from '@/lib/utils';
+import { AlertCircle, Bell, Shield, Mail, Check, X } from "lucide-react";
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
+
+  const router = useRouter();
+
+  // Watch password field for real-time updates
+  const watchPassword = watch('password');
+  const passwordStrength = getPasswordStrength(watchPassword || '');
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
@@ -31,17 +39,31 @@ export default function RegisterPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Registration Failed');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Registration Failed');
       }
+
+      toast.success('Registration successful! Please sign in.');
+      router.push('/login');
     }
     catch (error) {
       console.error('Registration error:', error);
+      toast.error(error instanceof Error ? error.message : 'Registration failed');
     }
   };
+
+  // Password requirements check
+  const passwordRequirements = [
+    { label: 'At least 8 characters', met: (watchPassword?.length || 0) >= 8 },
+    { label: 'Contains uppercase letter', met: /[A-Z]/.test(watchPassword || '') },
+    { label: 'Contains lowercase letter', met: /[a-z]/.test(watchPassword || '') },
+    { label: 'Contains number', met: /[0-9]/.test(watchPassword || '') },
+  ];
+
   return (
     <div className="flex h-screen">
       {/* Left Column - Gradient Background */}
-      <div className="hidden lg:flex w-1/2 flex-col justify-start items-start p-12 bg-gradient-to-br from-blue-900 via-red-900 to-blue-900">
+      <div className="hidden lg:flex w-1/2 flex-col justify-center items-center p-12 bg-gradient-to-br from-blue-900 via-red-900 to-blue-900">
         <div className="space-y-8 text-white">
           <h1 className="text-5xl font-bold tracking-tight">
             <span className="inline-block transform transition-transform duration-300 hover:scale-105">Crime</span>
@@ -86,7 +108,7 @@ export default function RegisterPage() {
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input
@@ -124,12 +146,50 @@ export default function RegisterPage() {
                   {...register('password')}
                   className={cn(errors.password && 'ring-2 ring-red-500')}
                 />
-                {errors.password && (
-                  <p className="text-sm text-red-500">{errors.password.message}</p>
+                
+                {/* Password Strength Meter */}
+                {watchPassword && (
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 flex-1 bg-muted rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full ${passwordStrength.color} transition-all duration-300`}
+                          style={{ width: `${(passwordStrength.score / 6) * 100}%` }}
+                        />
+                      </div>
+                      <span className="text-sm text-muted-foreground min-w-[80px]">
+                        {passwordStrength.message}
+                      </span>
+                    </div>
+                    
+                    {/* Password Requirements Checklist */}
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      {passwordRequirements.map((req, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          {req.met ? (
+                            <Check className="w-4 h-4 text-green-500" />
+                          ) : (
+                            <X className="w-4 h-4 text-destructive" />
+                          )}
+                          <span className={req.met ? 'text-muted-foreground' : 'text-destructive'}>
+                            {req.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
+
+                <div className="min-h-[20px]">
+                  {errors.password && (
+                    <div className="px-3 py-1 bg-destructive/10 text-destructive text-sm rounded-md">
+                      {errors.password.message}
+                    </div>
+                  )}
+                </div>
               </div>
             </CardContent>
-            <CardFooter className="flex flex-col space-y-4">
+            <CardFooter className="flex flex-col space-y-4 pt-6">
               <Button
                 type="submit"
                 className="w-full"
@@ -150,3 +210,7 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+
+
+

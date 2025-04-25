@@ -12,12 +12,12 @@
 
 ---
 
-## EPIC 1: Authentication ✅
+## EPIC 1: Authentication 
 
 ### Task 1.1: User Registration ✅
 **User Story**: As a new user, I want to register with my name, email, and password so that I can create an account and access the platform's features
 
-#### Subtask 1.1.1: Registration Form
+#### Subtask 1.1.1: Registration Form ✅
 - **User Story**: As a new user, I want a clear registration form with fields for my name, email, and password so that I can provide my information accurately and securely
 - **Constraints**:
   - Email validation using HTML5 type
@@ -29,7 +29,7 @@
   - "Invalid email format" warning
   - "Password must be 8+ characters" alert
 
-#### Subtask 1.1.2: MongoDB Storage
+#### Subtask 1.1.2: MongoDB Storage ✅
 - **User Story**: As a new user, I want my account information to be stored securely in the database so that my personal data remains protected and can be retrieved for future logins
 - **Constraints**:
   - bcrypt password hashing
@@ -41,7 +41,7 @@
   - Handle duplicate email errors
   - Database connection failures
 
-#### Subtask 1.1.3: NextAuth Integration
+#### Subtask 1.1.3: NextAuth Integration ✅
 - **User Story**: As a registered user, I want my session to be managed securely with NextAuth so that I can maintain a persistent and secure connection to the platform
 - **Constraints**:
   - NextAuth.js v4+
@@ -50,15 +50,16 @@
   - Credentials provider setup
   - Session callback configuration
 - **Error Boundaries**:
-  - Handle OAuth provider errors
-  - Session creation failures
+  - Handle authentication failures
+  - Session creation/validation errors
+  - Token expiration handling
 
 ---
 
 ### Task 1.2: User Login ✅
 **User Story**: As a registered user, I want to log in with my email and password so that I can access my account and use the platform's features
 
-#### Subtask 1.2.1: Login Form
+#### Subtask 1.2.1: Login Form ✅
 - **User Story**: As a registered user, I want a simple login form with email and password fields so that I can easily access my account
 - **Constraints**:
   - Input validation
@@ -70,7 +71,7 @@
   - "Invalid credentials" message
   - Account lockout notifications
 
-#### Subtask 1.2.2: NextAuth Session
+#### Subtask 1.2.2: NextAuth Session ✅
 - **User Story**: As a registered user, I want NextAuth to manage my persistent session so that I can stay logged in securely
 - **Constraints**:
   - NextAuth session management
@@ -84,9 +85,9 @@
 
 ---
 
-## EPIC 2: User Roles & Access Control ✅
+## EPIC 2: User Roles & Access Control 
 
-### Task 2.1: Role Differentiation ✅
+### Task 2.1: Role Differentiation 
 **User Story**: As a platform administrator, I want to differentiate between regular users and admins so that I can control access to administrative features
 
 #### Subtask 2.1.1: Role Property
@@ -115,9 +116,9 @@
 
 ---
 
-## EPIC 3: Report Filing Module ✅
+## EPIC 3: Report Filing Module 
 
-### Task 3.1: File Complaint ✅
+### Task 3.1: File Complaint 
 **User Story**: As a registered user, I want to submit complaints about issues in my community so that authorities can investigate and address them
 
 #### Subtask 3.1.1: Complaint Form
@@ -144,7 +145,7 @@
   - Database write errors
   - Data validation failures
 
-### Task 3.2: File Crime Report ✅
+### Task 3.2: File Crime Report 
 **User Story**: As a registered user, I want to submit crime reports with images so that I can provide evidence and help authorities investigate incidents
 
 #### Subtask 3.2.1: Crime Form
@@ -183,7 +184,7 @@
   - Handle DB update errors
   - Data validation failures
 
-### Task 3.3: File Missing Report ✅
+### Task 3.3: File Missing Report 
 **User Story**: As a registered user, I want to submit missing person reports with photos so that I can help locate missing individuals and alert the community
 
 #### Subtask 3.3.1: Missing Person Form
@@ -224,9 +225,9 @@
 
 ---
 
-## EPIC 4: Reports Viewer ✅
+## EPIC 4: Reports Viewer 
 
-### Task 4.1: Filter by City ✅
+### Task 4.1: Filter by City 
 **User Story**: As a platform user, I want to filter reports by city so that I can focus on incidents in my area of interest
 
 #### Subtask 4.1.1: City Dropdown
@@ -253,7 +254,7 @@
   - Handle DB query errors
   - Empty results handling
 
-### Task 4.2: Show Report Lists ✅
+### Task 4.2: Show Report Lists 
 **User Story**: As a platform user, I want to view organized lists of crime reports, missing person reports, and personal complaints so that I can easily find the information I need
 
 #### Subtask 4.2.1: Crime Reports
@@ -294,9 +295,9 @@
 
 ---
 
-## EPIC 5: Admin Module ✅
+## EPIC 5: Admin Module 
 
-### Task 5.1: Admin Access ✅
+### Task 5.1: Admin Access 
 **User Story**: As an administrator, I want secure access to administrative features so that I can manage the platform effectively
 
 #### Subtask 5.1.1: NextAuth Role Checks
@@ -323,7 +324,7 @@
   - Handle UI load failures
   - Feature access errors
 
-### Task 5.2: Status Update ✅
+### Task 5.2: Status Update 
 **User Story**: As an administrator, I want to update the status of reports so that users can track the progress of their submissions
 
 #### Subtask 5.2.1: Status Field
@@ -364,9 +365,9 @@
 
 ---
 
-## EPIC 6: UI/UX & Responsiveness ✅
+## EPIC 6: UI/UX & Responsiveness 
 
-### Task 6.1: Mobile-First Design ✅
+### Task 6.1: Mobile-First Design 
 **User Story**: As a mobile user, I want the platform to be optimized for my device so that I can access all features comfortably on a small screen
 
 #### Subtask 6.1.1: Responsive Layout
@@ -393,7 +394,7 @@
   - Log UI/performance issues
   - Device compatibility problems
 
-### Task 6.2: Navigation & Routing ✅
+### Task 6.2: Navigation & Routing 
 **User Story**: As a platform user, I want intuitive navigation so that I can easily find and access different sections of the application
 
 #### Subtask 6.2.1: Next.js Router
@@ -422,9 +423,9 @@
 
 ---
 
-## EPIC 7: Data Structure ✅
+## EPIC 7: Data Structure 
 
-### Task 7.1: MongoDB Collections ✅
+### Task 7.1: MongoDB Collections 
 **User Story**: As a platform developer, I want efficient data storage structures so that the application can retrieve and store information quickly and reliably
 
 #### Subtask 7.1.1: users Collection
@@ -501,9 +502,9 @@
 
 ---
 
-## EPIC 8: Quality & Testing ✅
+## EPIC 8: Quality & Testing 
 
-### Task 8.1: Functional Testing ✅
+### Task 8.1: Functional Testing 
 **User Story**: As a platform developer, I want comprehensive functional testing so that I can ensure all features work as expected
 
 #### Subtask 8.1.1: Auth Workflows
@@ -524,7 +525,7 @@
 - **Needs**: Verify permission enforcement
 - **Error Boundaries**: Log permission errors
 
-### Task 8.2: Responsiveness Testing ✅
+### Task 8.2: Responsiveness Testing 
 **User Story**: As a platform developer, I want to test the application's responsiveness across devices so that I can ensure a consistent user experience
 
 #### Subtask 8.2.1: Device Simulations
@@ -533,7 +534,7 @@
 - **Needs**: Fix UI/layout issues
 - **Error Boundaries**: Document responsiveness bugs
 
-### Task 8.3: Security Testing ✅
+### Task 8.3: Security Testing 
 **User Story**: As a platform developer, I want to conduct security testing so that I can protect user data and prevent vulnerabilities
 
 #### Subtask 8.3.1: Data Encryption
